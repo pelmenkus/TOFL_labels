@@ -28,9 +28,8 @@ def random_word(min_len: int, max_len: int) -> str:
     n = random.randint(min_len, max_len)
     return ''.join(random.choice(alph) for _ in range(n))
 
-#Применяет все возможные правила из словаря + учет, к примеру, для правила aba->b строка ababa может по системе T стать abb или bba
+#тут по порядку перебираю все правила и все подстроки с их применением, шафлю ток в reduce
 def rewrite(word: str, rules: dict[str, str]) -> list[str]:
-
     outcomes = set()
     for pattern, replacement in rules.items():
         start = 0
@@ -50,12 +49,13 @@ def reduce_word(word: str, rules: dict[str, str]) -> list[str]:
         next_words = rewrite(word, rules)
         if not next_words:
             break
-        #случайное возможное применение
+        #случайное слово в цепочку выбираю
+        #print(f"{word}       TUT SLOWA {next_words}")
         word = random.choice(next_words)
         trace.append(word)
     return trace
 
-#Проверяет достижимость old_w из new_w при данных правилах
+#Проверяет достижимость old_w по системе T'
 def is_reachable(new_w: str, old_w: str, rules: dict[str, str]) -> bool:
 
     if new_w == old_w:
@@ -63,7 +63,7 @@ def is_reachable(new_w: str, old_w: str, rules: dict[str, str]) -> bool:
 
     queue = deque([new_w])
     visited = {new_w}
-
+    #применил один раз правило к слову - закинул в очередь (и глянул на повторение)
     while queue:
         word = queue.popleft()
 
@@ -80,11 +80,12 @@ def is_reachable(new_w: str, old_w: str, rules: dict[str, str]) -> bool:
 #Генерация случайных тестов на эквивалентность систем T и T'
 def fuzz_test(all_tests: int):
 
-    success = fail = shown = 0
+    success = fail = 0
 
     for _ in range(all_tests):
         start = random_word(10, 25)
         seq = reduce_word(start, T)
+        #print(seq)
         target = seq[-1]
 
         reachable = is_reachable(start, target, newT)
@@ -108,5 +109,5 @@ def fuzz_test(all_tests: int):
 
 
 if __name__ == "__main__":
-    random.seed(13)
-    fuzz_test(all_tests=10)
+    random.seed(1345) #одинаковая рандом генерация по одинаковому сиду для удобства проверки глазками
+    fuzz_test(all_tests=1)
