@@ -1,0 +1,71 @@
+## Лабораторная работа №3 
+
+Дана грамматика: 
+
+* $S \to bTSa$
+* $T \to aSTb$
+* $S \to ab$
+* $T \to bT$
+* $T \to bb$
+ 
+#### Анализ на детерминизм
+
+Построим PDA: 
+
+![pda](pda/npda.svg)
+
+Недетерминизм возникает только при чтении $b$ с вершиной стека $T$
+Можно:
+* рекурсивно добавлять $T \to bT$
+* один раз добавить $T \to bb$
+
+##### Докажем недетерминизм по лемме о накачке
+
+(для любых двух слов $xy, xz∈L$ с общим длинным префиксом $x$ существует синхронная накачка такая что $α_1​α_2^i​α_3​y ∈ L ⟺ α_1 ​α_2^i​α_3​z ∈ L$)
+
+Возьмем регулярный язык $R = b(ab)^+bb(ababbb)^+bbb(ababbb)^*aba$
+После пересечения $L &cap R$ получим язык $L_1$, который оставляет в языке только слова вида $S \to bTSa \to baSTbaba \to babTSaTbaba \to babaSTbSaTbaba \to bababTSaTbSaTbaba \to b(ab)^nT(SaTb)^naba \to b(ab)^nT(ababbb)^naba$
+
+Рассмотрим два слова:
+
+Первое раскрываем, пользуясь правилами
+* $T \to bb$
+Получим
+* $w = b(ab)^nbb(ababbb)^nbbbaba$
+
+Второе раскроем, пользуясь правилами
+* $T \to bT$
+* $T \to aSTb$
+* $S \to bTSa$
+* $S \to ab$
+Получим
+* $b(ab)^nbbT(ababbb)^naba \to b(ab)^nbbaSTb(ababbb)^naba \to b(ab)^nbbabTSaTb(ababbb)^naba \to b(ab)^nbbabaSTbSaTb(ababbb)^naba \to b(ab)^nbbababTSaTbSaTb(ababbb)^naba \to b(ab)^nbbababT(SaTb)^2(ababbb)^naba \to b(ab)^nbbababT(ababbb)^2(ababbb)^naba \to b(ab)^nbb(ababbb)^kbbb(ababbb)^{2k}(ababbb)^naba$
+* $w' = b(ab)^nbb(ababbb)^kbbb(ababbb)^{2k}(ababbb)^naba$
+
+После пересечения с регуляркой:
+
+* В слове $w$ количество блоков $ababbb$ фиксирована, поэтому любая накачка меняет число блоков, т.е. слово выпадает из $L_1$
+* В слове $w'$ можно менять количество $ababbb$ и не выпадать из языка
+
+Тогда возникает противоречие, где $w$ выпадает, а $w'$ остается, значит **язык не является детерминированным.**
+
+#### Анализ на беспрефиксность
+
+Возьмем следующие правила:
+* $T \to bT$
+* $T \to bb$
+* $S \to ab$
+* $S \to bTSa$
+
+Пусть 
+$w_1 = b^6aba$ ($S \to bTSa \to bbTSa \to bbbTSa \to bbbbTSa \to bbbbbbaba$)
+
+$w_2 = b^6abaa$ ($S \to bTSa \to bTbTSaa \to bbbbbbabaa$)
+
+Тогда $w_2 = w_1aw_1$, значит $w_1$ является префиксом для $w_2$. **Язык не является беспрефиксным.**
+
+#### Язык не обладает LL-свойством, так как он недетерминирован
+
+#### LL(1)-аппроксимация
+
+
