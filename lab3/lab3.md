@@ -108,5 +108,5 @@ $Last(G) = a_1, b_3$
 
 ![lr](automat_photos/lr_position.jpg)
 
-[Правила из пересечений грамматики с LL(1) и LR(0) тут](/intersect_rules)
+[Правила из пересечений грамматики с LL(1) и LR(0) тут](intersect_rules)
 
