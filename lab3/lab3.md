@@ -12,7 +12,7 @@
 
 Построим PDA: 
 
-![pda](pda/npda.svg)
+![pda](automat_photos/pda.jpg)
 
 Недетерминизм возникает только при чтении $b$ с вершиной стека $T$
 Можно:
@@ -24,7 +24,7 @@
 (для любых двух слов $xy, xz∈L$ с общим длинным префиксом $x$ существует синхронная накачка такая что $α_1​α_2^i​α_3​y ∈ L ⟺ α_1 ​α_2^i​α_3​z ∈ L$)
 
 Возьмем регулярный язык $R = b(ab)^+bb(ababbb)^+bbb(ababbb)^*aba$
-После пересечения $L &cap R$ получим язык $L_1$, который оставляет в языке только слова вида $S \to bTSa \to baSTbaba \to babTSaTbaba \to babaSTbSaTbaba \to bababTSaTbSaTbaba \to b(ab)^nT(SaTb)^naba \to b(ab)^nT(ababbb)^naba$
+После пересечения $L \cap R$ получим язык $L_1$, который оставляет в языке только слова вида $S \to bTSa \to baSTbaba \to babTSaTbaba \to babaSTbSaTbaba \to bababTSaTbSaTbaba \to b(ab)^nT(SaTb)^naba \to b(ab)^nT(ababbb)^naba$
 
 Рассмотрим два слова:
 
@@ -68,4 +68,43 @@ $w_2 = b^6abaa$ ($S \to bTSa \to bTbTSaa \to bbbbbbabaa$)
 
 #### LL(1)-аппроксимация
 
+Построим $First$, $Follow$ и $Last$ множества
+
+* $S \to b_1TSa_1$
+* $T \to a_2STb_2$
+* $S \to a_3b_3$
+* $T \to b_4T$
+* $T \to b_5b_6$
+
+$First(G) = b_1, a_3$
+
+$Follow(a_1) = a_1, b_4, b_5$
+
+$Follow(b_1) = a_2, b_4, b_5$
+
+$Follow(a_2) = b_1, a_3$
+
+$Follow(b_2) = b_1, b_2, a_3$
+
+$Follow(a_3) = b_3$
+
+$Follow(b_3) = a_1, a_2, b_4, b_5$
+
+$Follow(b_4) = a_2, b_4, b_5$
+
+$Follow(b_5) = b_6$
+
+$Follow(b_6) = b_1, a_3, b_2$
+
+$Last(G) = a_1, b_3$
+
+Получаем LL(1)-аппроксимацию и минимизируем её:
+
+![ll](automat_photos/ll_min.jpg)
+
+#### LR(0)-аппроксимация
+
+Позиционный автомат
+
+![lr](automat_photos/lr_position.jpg)
 
