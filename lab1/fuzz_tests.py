@@ -12,7 +12,7 @@ T = {
 
 newT = {
     "bpb": "abapba",
-    "p": "aba",
+    "p": "aba", 
     "apa": "bb",
     "abba": "baab",
     "baababaa": "abbbb",

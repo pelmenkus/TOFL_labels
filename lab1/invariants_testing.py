@@ -13,7 +13,7 @@ newT = {
 }
 
 """ 1. p не увеличивается
-    2. b не уменьшается
+    2. b не уменьшается 
     3. (a + b) mod 3 постоянно"""
 def check_invariants(chain: list[str]) -> bool:
 
