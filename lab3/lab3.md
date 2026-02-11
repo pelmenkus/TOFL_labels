@@ -21,9 +21,9 @@
 
 ##### Докажем недетерминизм по лемме о накачке
 
-* Для любых двух слов $xy, xz∈L$ с общим длинным префиксом $x$ существует синхронная накачка такая что $\alpha_1 \alpha_2^i \alpha_3 y \in L \; \& \; \alpha_1 \alpha_2^i \alpha_3 z \in L$
+* Для любых двух слов $xy, xz∈L$ с общим длинным префиксом $x$ существует синхронная накачка такая что $\alpha_1 \alpha_2^i \alpha_3 y \in L \; \land \; \alpha_1 \alpha_2^i \alpha_3 z \in L$
 
-* Существует разбиение $x=x_1x_2x_3$, $y=y_1y_2y_3$, $z=z_1z_2z_3$ такое что $|x_2x_3| \le p, |x_2| > 0 и x_1x_2^ix_3y_1y_2^iy_3 \in L \& x_1x_2^ix_3z_1z_2^iz_3 \in L$
+* Существует разбиение $x=x_1x_2x_3$, $y=y_1y_2y_3$, $z=z_1z_2z_3$ такое что $|x_2x_3| \le p, |x_2| > 0 и x_1x_2^ix_3y_1y_2^iy_3 \in L \land x_1x_2^ix_3z_1z_2^iz_3 \in L$
 
 Возьмем регулярный язык $R = b(ab)^+bb(ababbb)^+bbb(ababbb)^*aba$
 После пересечения $L \cap R$ получим язык $L_1$, который оставляет в языке только слова вида $S \to bTSa \to baSTbaba \to babTSaTbaba \to babaSTbSaTbaba \to bababTSaTbSaTbaba \to b(ab)^nT(SaTb)^naba \to b(ab)^nT(ababbb)^naba$
