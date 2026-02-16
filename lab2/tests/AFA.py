@@ -70,7 +70,6 @@ def intersect_L1_L2(L1_start, L2_start):
 
 # Проверка принятия AFA
 def AFA_single(start, word):
-    # твоя старая реализация accept_state с memo
     def accept_state_single(state, word, pos, memo):
         key = (state.id, pos)
         if key in memo:
@@ -105,7 +104,7 @@ def AFA_single(start, word):
     return accept_state_single(start, word, 0, {})
 
 
-# --- Проверка пересечения двух автоматов ---
+#Проверка пересечения двух автоматов
 def AFA_intersect(L1_start, L2_start, word):
     #a = AFA_single(L1_start, word)
     #b = AFA_single(L2_start, word)

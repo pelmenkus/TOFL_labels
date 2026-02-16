@@ -2,7 +2,7 @@ from DFA import DFA
 from NFA import NFA, build_nfa
 from regex import match_by_regex
 import random
-from AFA import build_L1_AFA, build_L2_as_AFA, AFA_intersect  # Исправил опечатку
+from AFA import build_L1_AFA, build_L2_as_AFA, AFA_intersect
 
 alphabet = ['a', 'b', 'c']
 MAX_LEN = 20
@@ -20,9 +20,9 @@ def main():
     for _ in range(NUM_TESTS):
         w = make_random_word()
         r = match_by_regex(w)
-        d = DFA(w)  # Убедись, что это возвращает True/False
-        n = NFA(nfa_start, w)  # True/False
-        a = AFA_intersect(L1_start, L2_start, w)  # True/False
+        d = DFA(w)  # True/False часть
+        n = NFA(nfa_start, w)
+        a = AFA_intersect(L1_start, L2_start, w)
         if r:
             print(w)  # На всякий случай, чтобы проверить корректное слово
             print()
