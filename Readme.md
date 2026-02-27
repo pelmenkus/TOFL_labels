@@ -11,3 +11,5 @@
 5. [$NFA \to DFA$ умным и правильным способом через все пары состояний](https://www.youtube.com/watch?v=77kx3FwsIwU)
 
 6. [Быстрое и понятное пояснение $NFA \to DFA$](https://www.youtube.com/watch?v=SCdsgVT6Ktw)
+
+7. [Построение онлайн $NFA to DFA$ (вроде даже минимируется в конце), но переходы задаются $(q_1, q_2, term)$](https://joeylemon.github.io/nfa-to-dfa/)
