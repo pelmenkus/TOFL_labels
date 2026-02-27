@@ -13,3 +13,5 @@
 6. [Быстрое и понятное пояснение NFA to DFA](https://www.youtube.com/watch?v=SCdsgVT6Ktw)
 
 7. [Построение онлайн NFA to DFA (вроде даже минимируется в конце), но переходы задаются (Таблица q_start, Таблица перехода символа в состояние q_end, Отдельно q_0, Отдельно q_final)](https://joeylemon.github.io/nfa-to-dfa/)
+
+8. [Построение DFA по Regex](https://cyberzhg.github.io/toolbox/min_dfa)
